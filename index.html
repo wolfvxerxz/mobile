@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TripUp · Wireflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray-50:#FAFAFA;--gray-100:#F3F4F6;--gray-200:#EAECF0;--gray-300:#D0D5DD;
+    --gray-400:#9CA3AF;--gray-500:#6B7280;--gray-600:#475467;--gray-700:#344054;
+    --gray-800:#1F2937;--gray-900:#111111;
+    --sky-400:#38BDF8;--sky-500:#0EA5E9;--indigo-600:#4F46E5;
+    --orange-500:#F97316;--rose-500:#F43F5E;--emerald-500:#10B981;
+    --amber-400:#FBBF24;--blue-500:#3B82F6;--cyan-500:#06B6D4;--violet-500:#8B5CF6;
+    --orange-soft:#FFF7ED;--rose-soft:#FFF1F2;--emerald-soft:#ECFDF5;
+    --sky-soft:#F0F9FF;--indigo-soft:#EEF2FF;--amber-soft:#FFFBEB;
+    --canvas-bg:#FAFAFA;
+    --shadow-card:0px 4px 14px rgba(0,0,0,0.05);
+    --shadow-btn:0px 0.96px 1.92px rgba(8,8,8,0.2),0px 3.84px 3.84px rgba(8,8,8,0.08),inset 0px 0.96px 0.96px rgba(255,255,255,0.2),inset 0px 5.76px 11.53px rgba(255,255,255,0.12);
+    --shadow-phone:0 30px 60px -15px rgba(0,0,0,0.18),0 10px 20px -10px rgba(0,0,0,0.10);
+    --font:'Inter','Inter Display',-apple-system,system-ui,sans-serif;
+    --btn-black:linear-gradient(180deg,#1F1F1F 0%,#1C1917 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--canvas-bg);font-family:var(--font);color:var(--gray-900);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{padding:64px 48px 96px;}
+  .canvas{max-width:max-content;margin:0 auto;}
+  .canvas-head{margin-bottom:56px;max-width:760px;}
+  .canvas-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-500);margin-bottom:14px;}
+  .canvas-head h1{font-size:44px;font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin-bottom:18px;color:#212121;}
+  .canvas-head p{font-size:15px;line-height:1.6;color:var(--gray-600);}
+  .meta-row{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+  .meta-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:#fff;border:1px solid var(--gray-200);border-radius:100px;font-size:12px;font-weight:500;color:var(--gray-700);box-shadow:var(--shadow-card);}
+  .meta-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--orange-500);}
+  .flow-row{margin-bottom:72px;}
+  .flow-row:last-child{margin-bottom:0;}
+  .flow-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px;border-bottom:1px solid var(--gray-200);padding-bottom:20px;}
+  .flow-head-left{max-width:580px;}
+  .section-tag{display:inline-flex;align-items:center;gap:8px;background:var(--gray-50);border:1px solid var(--gray-200);padding:5px 12px;border-radius:100px;font-size:11px;font-weight:600;color:var(--gray-700);letter-spacing:0.04em;margin-bottom:12px;}
+  .section-tag .num{width:18px;height:18px;border-radius:50%;background:var(--btn-black);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+  .flow-head h2{font-size:26px;font-weight:600;letter-spacing:-0.015em;line-height:1.15;color:#212121;margin-bottom:6px;}
+  .flow-head p{font-size:14px;color:var(--gray-600);line-height:1.55;}
+  .flow-head-right{font-size:12px;color:var(--gray-500);font-weight:500;text-align:right;min-width:120px;white-space:nowrap;}
+  .phones{display:flex;gap:48px;align-items:flex-start;padding:8px 4px;}
+  .phone-cell{flex-shrink:0;display:flex;flex-direction:column;align-items:center;width:375px;position:relative;}
+  .step-badge{position:absolute;top:-10px;left:-10px;z-index:20;background:var(--btn-black);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font);font-size:13px;font-weight:700;box-shadow:var(--shadow-btn),0 6px 14px rgba(0,0,0,0.15);}
+  .hifi-marker{position:absolute;top:-10px;right:-8px;z-index:20;background:linear-gradient(90deg,var(--orange-500),var(--rose-500));color:#fff;padding:6px 11px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:0.06em;box-shadow:0 4px 12px rgba(244,63,94,0.3);}
+  .phone-caption{margin-top:22px;width:100%;text-align:left;}
+  .caption-step{font-size:11px;font-weight:600;color:var(--gray-500);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;}
+  .caption-title{font-size:16px;font-weight:600;color:#212121;line-height:1.25;margin-bottom:6px;letter-spacing:-0.005em;}
+  .caption-desc{font-size:13px;color:var(--gray-600);line-height:1.55;}
+  .caption-arrow{margin-top:10px;font-size:11px;color:var(--orange-500);font-weight:600;display:flex;align-items:center;gap:6px;}
+  .phone{width:375px;height:812px;background:#FFFFFF;border:1px solid var(--gray-300);border-radius:40px;position:relative;overflow:hidden;box-shadow:var(--shadow-phone);}
+  .screen{position:absolute;inset:0;overflow:hidden;border-radius:40px;}
+  .sb{position:absolute;top:0;left:0;right:0;height:59px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 22px 8px;z-index:30;pointer-events:none;}
+  .sb-time{font-family:'SF Pro Text',var(--font);font-size:16px;font-weight:600;letter-spacing:-0.32px;color:#000;}
+  .sb-time.dark{color:#fff;}
+  .sb-icons{display:flex;gap:6px;align-items:center;}
+  .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:125px;height:37px;background:#000;border-radius:100px;z-index:31;}
+  .home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;background:#000;border-radius:100px;z-index:30;}
+  .home-ind.light{background:#fff;opacity:0.7;}
+  .app{position:absolute;inset:0;padding-top:59px;padding-bottom:34px;overflow:hidden;}
+  .app.dark{background:#111111;color:#fff;}
+  .nav{display:flex;align-items:center;gap:10px;padding:12px 16px 8px;}
+  .nav-back{width:36px;height:36px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .nav-back svg{width:16px;height:16px;}
+  .nav-meta{flex:1;min-width:0;}
+  .nav-eyebrow{font-size:11px;font-weight:600;color:var(--orange-500);letter-spacing:0.06em;text-transform:uppercase;}
+  .nav-title{font-size:17px;font-weight:600;line-height:1.2;margin-top:2px;color:#212121;letter-spacing:-0.01em;}
+  .nav-actions{display:flex;gap:6px;}
+  .nav-icon-btn{width:36px;height:36px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .card{background:#fff;border:1px solid var(--gray-200);border-radius:24px;box-shadow:var(--shadow-card);padding:16px;}
+  .card-flat{background:#fff;border:1px solid var(--gray-200);border-radius:20px;padding:14px;}
+  .card-soft{border-radius:20px;padding:14px;}
+  .btn-black{width:100%;background:var(--btn-black);box-shadow:var(--shadow-btn);border-radius:750px;padding:14px 20px;color:#fff;font-size:14px;font-weight:500;border:none;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font);cursor:pointer;}
+  .btn-ghost{width:100%;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:750px;padding:13px 20px;color:var(--gray-700);font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .btn-secondary{width:100%;background:var(--orange-soft);border:1px solid #FED7AA;border-radius:750px;padding:13px 20px;color:var(--orange-500);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:600;background:var(--gray-50);border:1px solid var(--gray-200);color:var(--gray-700);}
+  .pill.org{background:var(--orange-soft);border-color:#FED7AA;color:var(--orange-500);}
+  .pill.sky{background:var(--sky-soft);border-color:#BAE6FD;color:var(--sky-500);}
+  .pill.ind{background:var(--indigo-soft);border-color:#C7D2FE;color:var(--indigo-600);}
+  .pill.rose{background:var(--rose-soft);border-color:#FECDD3;color:var(--rose-500);}
+  .pill.em{background:var(--emerald-soft);border-color:#A7F3D0;color:var(--emerald-500);}
+  .pill.dark{background:#111;border-color:#111;color:#fff;}
+  .av{border-radius:50%;color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font);letter-spacing:-0.02em;}
+  .av-ar{background:linear-gradient(135deg,#F97316,#F43F5E);box-shadow:0 0 0 2px #FBBF24;}
+  .av-tm{background:linear-gradient(135deg,#10B981,#059669);}
+  .av-nc{background:linear-gradient(135deg,#8B5CF6,#4F46E5);}
+  .av-so{background:linear-gradient(135deg,#38BDF8,#4F46E5);}
+  .av-rn{background:linear-gradient(135deg,#FBBF24,#F97316);}
+  .av-rm{background:linear-gradient(135deg,#F43F5E,#BE185D);}
+  .av-stack{display:flex;}
+  .av-stack .av{border:2px solid #fff;box-sizing:content-box;margin-left:-8px;}
+  .av-stack .av:first-child{margin-left:0;}
+  .tabs-strip{display:flex;gap:0;padding:0 16px;border-bottom:1px solid var(--gray-200);}
+  .tab-i{padding:12px 14px;font-size:13px;font-weight:500;color:var(--gray-500);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;}
+  .tab-i.on{color:#212121;border-bottom-color:#212121;font-weight:600;}
+  .input{width:100%;background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:12px 14px;font-size:14px;font-family:var(--font);color:#212121;}
+  .input::placeholder{color:var(--gray-400);}
+  .lv-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--gray-100);}
+  .lv-row:last-child{border-bottom:none;}
+  .lv-label{font-size:13px;color:var(--gray-500);font-weight:500;}
+  .lv-val{font-size:14px;color:#212121;font-weight:600;}
+  .tabbar{position:absolute;bottom:34px;left:0;right:0;background:#fff;border-top:1px solid var(--gray-200);padding:10px 0 0;display:flex;justify-content:space-around;align-items:center;z-index:20;height:64px;}
+  .tabbar.dark{background:#1A1A1A;border-top-color:#2A2A2A;}
+  .tab-btn{background:none;border:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;cursor:pointer;}
+  .tab-btn-label{font-size:10px;font-weight:500;color:var(--gray-400);}
+  .tab-btn.on .tab-btn-label{color:#212121;font-weight:600;}
+  .live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--rose-500);margin-right:6px;box-shadow:0 0 0 4px rgba(244,63,94,0.15);}
+  .scrollarea{position:absolute;top:59px;left:0;right:0;bottom:34px;overflow:hidden;}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="canvas-head">
+    <div class="canvas-eyebrow">Bending Spoons · Task #6</div>
+    <h1>TripUp · Wireflow</h1>
+    <p>Ari's last evening in Lisbon. Fifteen high-fidelity screens covering the full scenario: opening the trip, adding Ren as a new friend, running a real-time restaurant poll with auto-pinning, logging dinner with per-item exclusion, and settling all debts in three transactions instead of seven.</p>
+    <div class="meta-row">
+      <div class="meta-chip"><span class="dot"></span>iPhone 15 Pro · 375 × 812</div>
+      <div class="meta-chip">Inter Display · 4 / 24 / 750 radius</div>
+      <div class="meta-chip">15 screens · 4 flow sections</div>
+      <div class="meta-chip">3 hi-fi key screens marked</div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- ROW 1 — ENTERING THE TRIP                            -->
+  <!-- ==================================================== -->
+  <div class="flow-row">
+    <div class="flow-head">
+      <div class="flow-head-left">
+        <div class="section-tag"><span class="num">1</span> Section One</div>
+        <h2>Open the app, find the trip, add Ren</h2>
+        <p>Ari opens TripUp at the apartment, taps into the Lisbon trip, and adds Ren — joining only for the final dinner — as a new friend.</p>
+      </div>
+      <div class="flow-head-right">Screens 01 — 04<br>4 steps · ~25s</div>
+    </div>
+
+    <div class="phones">
+
+      <!-- ============ 01 · HOME ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">01</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:38</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5zM8 5.2c-1.8 0-3.3.6-4.3 1.5l1.5 1.5c.6-.6 1.6-1 2.8-1s2.2.4 2.8 1L12.3 6.7c-1-.9-2.5-1.5-4.3-1.5zM8 8.5c-.6 0-1.2.2-1.5.5L8 10.5l1.5-1.5c-.3-.3-.9-.5-1.5-.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <!-- Header: greeting -->
+            <div style="padding:14px 20px 8px">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <div style="font-size:13px;color:var(--gray-500);font-weight:500;">Saturday evening</div>
+                  <div style="font-size:24px;font-weight:600;color:#212121;letter-spacing:-0.02em;margin-top:4px;">Olá, Ari 👋</div>
+                </div>
+                <div style="position:relative;">
+                  <div class="av av-ar" style="width:42px;height:42px;font-size:14px;">AR</div>
+                  <div style="position:absolute;top:-2px;right:-2px;width:10px;height:10px;background:var(--orange-500);border:2px solid #fff;border-radius:50%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-strip" style="margin-top:8px;">
+              <div class="tab-i on">Active</div>
+              <div class="tab-i">Upcoming <span style="font-size:10px;color:var(--gray-400);margin-left:2px;">2</span></div>
+              <div class="tab-i">Past</div>
+            </div>
+
+            <!-- Trip cards -->
+            <div style="padding:18px 16px;display:flex;flex-direction:column;gap:14px;">
+
+              <!-- LIVE Lisbon card -->
+              <div class="card" style="padding:0;overflow:hidden;border-color:#FED7AA;box-shadow:0 4px 14px rgba(249,115,22,0.10);">
+                <div style="height:120px;background:linear-gradient(135deg,#F97316 0%,#F43F5E 60%,#FBBF24 130%);position:relative;padding:14px;">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                    <span class="pill" style="background:rgba(255,255,255,0.95);border:none;color:var(--rose-500);font-weight:700;"><span class="live-dot" style="background:var(--rose-500);"></span>LIVE NOW</span>
+                    <span style="color:#fff;font-size:11px;font-weight:600;letter-spacing:0.04em;background:rgba(0,0,0,0.2);padding:4px 10px;border-radius:100px;">DAY 4 / 5</span>
+                  </div>
+                  <div style="position:absolute;bottom:14px;left:14px;right:14px;color:#fff;">
+                    <div style="font-size:11px;opacity:0.9;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;">Lisbon, Portugal</div>
+                    <div style="font-size:22px;font-weight:700;letter-spacing:-0.02em;margin-top:2px;">Last night out 🌙</div>
+                  </div>
+                </div>
+                <div style="padding:14px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                    <div class="av-stack">
+                      <div class="av av-ar" style="width:28px;height:28px;font-size:10px;">AR</div>
+                      <div class="av av-tm" style="width:28px;height:28px;font-size:10px;">TM</div>
+                      <div class="av av-nc" style="width:28px;height:28px;font-size:10px;">NC</div>
+                      <div class="av av-so" style="width:28px;height:28px;font-size:10px;">SO</div>
+                    </div>
+                    <div style="font-size:12px;color:var(--gray-500);font-weight:500;">4 going</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--orange-soft);border-radius:12px;">
+                    <div style="width:6px;height:6px;border-radius:50%;background:var(--orange-500);animation:pulse 2s infinite;"></div>
+                    <div style="font-size:12px;color:var(--orange-500);font-weight:600;flex:1;">Dinner being decided…</div>
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">3 of 4 voted</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section label -->
+              <div style="font-size:11px;font-weight:600;color:var(--gray-500);letter-spacing:0.06em;text-transform:uppercase;padding:4px 4px 0;">Other active trips</div>
+
+              <!-- Other trip -->
+              <div class="card-flat" style="display:flex;gap:12px;align-items:center;">
+                <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#38BDF8,#4F46E5);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🏔️</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14px;font-weight:600;color:#212121;">Dolomites · Hut Trek</div>
+                  <div style="font-size:12px;color:var(--gray-500);margin-top:2px;">Starts Jul 12 · 6 going</div>
+                </div>
+                <span class="pill ind" style="font-size:10px;">Planning</span>
+              </div>
+
+              <div class="card-flat" style="display:flex;gap:12px;align-items:center;">
+                <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#10B981,#0EA5E9);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🏝️</div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14px;font-weight:600;color:#212121;">Sicily · Beach week</div>
+                  <div style="font-size:12px;color:var(--gray-500);margin-top:2px;">Aug 18 — 25 · 8 going</div>
+                </div>
+                <span class="pill em" style="font-size:10px;">Confirmed</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Tabbar -->
+          <div class="tabbar">
+            <div class="tab-btn on">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+              <span class="tab-btn-label">Trips</span>
+            </div>
+            <div class="tab-btn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+              <span class="tab-btn-label">Discover</span>
+            </div>
+            <div class="tab-btn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <span class="tab-btn-label">Inbox</span>
+            </div>
+            <div class="tab-btn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a4 4 0 014-4h8a4 4 0 014 4v2"/></svg>
+              <span class="tab-btn-label">You</span>
+            </div>
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 01</div>
+          <div class="caption-title">Home — Lisbon trip is live</div>
+          <div class="caption-desc">Ari opens the app. The Lisbon hero card surfaces a real-time status: a dinner is being decided right now. One tap gets her in.</div>
+          <div class="caption-arrow">Taps Lisbon card →</div>
+        </div>
+      </div>
+
+      <!-- ============ 02 · TRIP OVERVIEW (HI-FI) ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">02</div>
+        <div class="hifi-marker">★ HI-FI</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time dark">20:38</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#fff"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#fff"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5zM8 5.2c-1.8 0-3.3.6-4.3 1.5l1.5 1.5c.6-.6 1.6-1 2.8-1s2.2.4 2.8 1L12.3 6.7c-1-.9-2.5-1.5-4.3-1.5zM8 8.5c-.6 0-1.2.2-1.5.5L8 10.5l1.5-1.5c-.3-.3-.9-.5-1.5-.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#fff" opacity="0.5"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#fff"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#fff" opacity="0.5"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute;inset:0;">
+
+            <!-- Hero -->
+            <div style="height:280px;background:linear-gradient(135deg,#F97316 0%,#F43F5E 50%,#BE185D 100%);position:relative;padding:70px 20px 0;color:#fff;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <button class="nav-back" style="background:rgba(255,255,255,0.2);border:none;backdrop-filter:blur(10px);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div style="display:flex;gap:8px;">
+                  <button class="nav-back" style="background:rgba(255,255,255,0.2);border:none;backdrop-filter:blur(10px);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </button>
+                  <button class="nav-back" style="background:rgba(255,255,255,0.2);border:none;backdrop-filter:blur(10px);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div style="margin-top:32px;">
+                <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;opacity:0.85;">Day 4 of 5 · Saturday</div>
+                <div style="font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.05;margin-top:6px;">Lisbon</div>
+                <div style="font-size:14px;opacity:0.9;margin-top:6px;font-weight:500;">May 1 — 5 · with Tomás, Nico, Sofia</div>
+              </div>
+            </div>
+
+            <!-- Sheet -->
+            <div style="position:absolute;top:240px;left:0;right:0;bottom:0;background:#fff;border-radius:28px 28px 0 0;border:1px solid var(--gray-200);padding:0;">
+
+              <!-- Tabs -->
+              <div class="tabs-strip" style="padding:8px 16px 0;">
+                <div class="tab-i on">Itinerary</div>
+                <div class="tab-i">Polls <span style="background:var(--orange-500);color:#fff;font-size:9px;padding:2px 5px;border-radius:6px;margin-left:4px;font-weight:700;">1</span></div>
+                <div class="tab-i">Expenses</div>
+                <div class="tab-i">Map</div>
+              </div>
+
+              <!-- Live poll banner -->
+              <div style="padding:14px 16px 0;">
+                <div class="card" style="border-color:#FED7AA;background:linear-gradient(135deg,#FFF7ED 0%,#FFFFFF 60%);padding:14px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <span class="live-dot"></span>
+                      <span style="font-size:11px;font-weight:700;color:var(--rose-500);letter-spacing:0.06em;">DECIDING NOW</span>
+                    </div>
+                    <span style="font-size:11px;color:var(--gray-500);font-weight:500;">closes in 12m</span>
+                  </div>
+                  <div style="font-size:15px;font-weight:600;color:#212121;letter-spacing:-0.005em;">Where are we eating tonight? 🍷</div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;">
+                    <div class="av-stack">
+                      <div class="av av-tm" style="width:24px;height:24px;font-size:9px;">TM</div>
+                      <div class="av av-nc" style="width:24px;height:24px;font-size:9px;">NC</div>
+                      <div class="av av-so" style="width:24px;height:24px;font-size:9px;">SO</div>
+                      <div class="av" style="width:24px;height:24px;font-size:9px;background:var(--gray-100);border:2px dashed var(--gray-300);color:var(--gray-400);box-sizing:border-box;">?</div>
+                    </div>
+                    <button style="background:var(--btn-black);color:#fff;border:none;padding:8px 14px;border-radius:100px;font-size:12px;font-weight:600;box-shadow:var(--shadow-btn);">Cast vote →</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Today timeline -->
+              <div style="padding:18px 16px 0;">
+                <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Today · Saturday</div>
+
+                <div style="display:flex;gap:12px;margin-bottom:12px;">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:42px;">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">10:00</div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:var(--gray-300);"></div>
+                    <div style="width:1px;flex:1;background:var(--gray-200);"></div>
+                  </div>
+                  <div style="flex:1;padding-bottom:12px;">
+                    <div style="font-size:14px;font-weight:600;color:var(--gray-400);text-decoration:line-through;">Belém Tower visit</div>
+                    <div style="font-size:11px;color:var(--gray-400);margin-top:2px;">Done · 2h ago</div>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:12px;margin-bottom:12px;">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:42px;">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">17:30</div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:var(--gray-300);"></div>
+                    <div style="width:1px;flex:1;background:var(--gray-200);"></div>
+                  </div>
+                  <div style="flex:1;padding-bottom:12px;">
+                    <div style="font-size:14px;font-weight:600;color:var(--gray-400);text-decoration:line-through;">Sunset · Miradouro da Graça</div>
+                    <div style="font-size:11px;color:var(--gray-400);margin-top:2px;">Done</div>
+                  </div>
+                </div>
+
+                <div style="display:flex;gap:12px;">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:42px;">
+                    <div style="font-size:11px;color:var(--orange-500);font-weight:700;">21:00</div>
+                    <div style="width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--orange-500);box-shadow:0 0 0 4px rgba(249,115,22,0.15);"></div>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                      <div style="font-size:14px;font-weight:600;color:#212121;">Dinner</div>
+                      <span class="pill org" style="font-size:9px;padding:2px 7px;">DECIDING</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--gray-500);font-weight:500;">Pinned by group · awaiting poll</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Tabbar -->
+          <div class="tabbar">
+            <div class="tab-btn on">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+              <span class="tab-btn-label">Trips</span>
+            </div>
+            <div class="tab-btn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+              <span class="tab-btn-label">Discover</span>
+            </div>
+            <div class="tab-btn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <span class="tab-btn-label">Inbox</span>
+            </div>
+            <div class="tab-btn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a4 4 0 014-4h8a4 4 0 014 4v2"/></svg>
+              <span class="tab-btn-label">You</span>
+            </div>
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 02 · Key screen</div>
+          <div class="caption-title">Trip overview — DECIDING NOW card surfaces the live poll</div>
+          <div class="caption-desc">Hero shows day position. The orange "Deciding now" timeline anchor handles re-entry mid-poll. Avatars include a "?" slot signaling Ren is missing.</div>
+          <div class="caption-arrow">Taps members icon (top right) →</div>
+        </div>
+      </div>
+
+      <!-- ============ 03 · MEMBERS SHEET ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">03</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:38</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <!-- Dimmed background -->
+          <div style="position:absolute;inset:0;background:rgba(17,17,17,0.55);backdrop-filter:blur(8px);"></div>
+
+          <!-- Bottom sheet -->
+          <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:28px 28px 0 0;padding:14px 0 34px;max-height:620px;">
+            <div style="width:36px;height:4px;background:var(--gray-300);border-radius:100px;margin:0 auto 16px;"></div>
+
+            <div style="padding:0 20px 14px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:20px;font-weight:600;color:#212121;letter-spacing:-0.015em;">Lisbon trip</div>
+                <div style="font-size:13px;color:var(--gray-500);margin-top:2px;">4 members · 1 organizer</div>
+              </div>
+              <button class="nav-back" style="background:var(--gray-50);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+
+            <!-- Members list -->
+            <div style="padding:0 16px;">
+
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 8px;border-bottom:1px solid var(--gray-100);">
+                <div class="av av-ar" style="width:42px;height:42px;font-size:14px;">AR</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:6px;">
+                    <div style="font-size:14px;font-weight:600;color:#212121;">Ari Reis</div>
+                    <span class="pill" style="font-size:9px;padding:2px 7px;background:var(--gray-100);">YOU</span>
+                  </div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">@arireis · joined May 1</div>
+                </div>
+                <span class="pill org" style="font-size:10px;">Organizer</span>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 8px;border-bottom:1px solid var(--gray-100);">
+                <div class="av av-tm" style="width:42px;height:42px;font-size:14px;">TM</div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;color:#212121;">Tomás Marquez</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">@tomasm · active 2m ago</div>
+                </div>
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--emerald-500);"></div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 8px;border-bottom:1px solid var(--gray-100);">
+                <div class="av av-nc" style="width:42px;height:42px;font-size:14px;">NC</div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;color:#212121;">Nico Carvalho</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">@nicocrv · active 5m ago</div>
+                </div>
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--emerald-500);"></div>
+              </div>
+
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 8px;">
+                <div class="av av-so" style="width:42px;height:42px;font-size:14px;">SO</div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;color:#212121;">Sofia Oliveira</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">@sofiaol · active 1h ago</div>
+                </div>
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--gray-300);"></div>
+              </div>
+
+            </div>
+
+            <!-- Add friend (highlighted) -->
+            <div style="padding:14px 16px 0;border-top:1px solid var(--gray-100);margin-top:8px;">
+              <div style="position:relative;">
+                <div style="position:absolute;inset:-3px;background:linear-gradient(135deg,var(--orange-500),var(--rose-500));border-radius:18px;opacity:0.25;filter:blur(8px);"></div>
+                <button class="btn-secondary" style="position:relative;border-color:var(--orange-500);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                  Add friend to trip
+                </button>
+              </div>
+              <div style="font-size:11px;color:var(--gray-500);text-align:center;margin-top:10px;">They'll see itinerary, polls, and split with the group</div>
+            </div>
+
+          </div>
+
+          <div class="home-ind light"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 03</div>
+          <div class="caption-title">Members sheet — add friend stands out</div>
+          <div class="caption-desc">Bottom sheet pattern preserves trip context. Real-time presence dots on each member. The Add Friend CTA glows with the brand gradient.</div>
+          <div class="caption-arrow">Taps "Add friend to trip" →</div>
+        </div>
+      </div>
+
+      <!-- ============ 04 · ADD FRIEND ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">04</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:38</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Lisbon · Members</div>
+                <div class="nav-title">Add friend</div>
+              </div>
+            </div>
+
+            <!-- Search -->
+            <div style="padding:8px 16px 0;">
+              <div style="position:relative;">
+                <svg style="position:absolute;left:14px;top:50%;transform:translateY(-50%);" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input class="input" style="padding-left:38px;" value="Ren" placeholder="Name, @handle, or email">
+              </div>
+            </div>
+
+            <!-- Selected chip -->
+            <div style="padding:14px 16px 0;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Adding to trip · 1</div>
+              <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;background:var(--orange-soft);border:1px solid #FED7AA;border-radius:100px;">
+                <div class="av av-rn" style="width:24px;height:24px;font-size:9px;">RN</div>
+                <span style="font-size:13px;font-weight:600;color:#212121;">Ren Tanaka</span>
+                <button style="width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,0.1);border:none;display:flex;align-items:center;justify-content:center;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Top match -->
+            <div style="padding:24px 16px 0;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Top match</div>
+              <div class="card" style="padding:14px;border-color:var(--orange-500);background:#fff;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div class="av av-rn" style="width:48px;height:48px;font-size:16px;">RN</div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <div style="font-size:15px;font-weight:600;color:#212121;">Ren Tanaka</div>
+                      <span class="pill em" style="font-size:9px;padding:2px 7px;">✓</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--gray-500);margin-top:2px;">@rentnk · ren@hey.com</div>
+                  </div>
+                  <button style="background:var(--btn-black);color:#fff;border:none;padding:8px 14px;border-radius:100px;font-size:12px;font-weight:600;box-shadow:var(--shadow-btn);">Selected</button>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:12px;padding:8px 12px;background:var(--gray-50);border-radius:10px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  <span style="font-size:11px;color:var(--gray-600);">2 mutual trips with Tomás · joined Sofia's bachelorette</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent travellers -->
+            <div style="padding:24px 16px 0;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Recent travellers</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;align-items:center;gap:12px;padding:8px 4px;">
+                  <div class="av" style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,#06B6D4,#0EA5E9);">RC</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Rena Correia</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">@renacrr · last trip Tulum '25</div>
+                  </div>
+                  <button style="background:var(--gray-50);border:1px solid var(--gray-200);padding:5px 10px;border-radius:100px;font-size:11px;font-weight:500;">Add</button>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;padding:8px 4px;">
+                  <div class="av" style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,#F43F5E,#8B5CF6);">RB</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Renato Bianchi</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">@rena_b · last trip Roma '24</div>
+                  </div>
+                  <button style="background:var(--gray-50);border:1px solid var(--gray-200);padding:5px 10px;border-radius:100px;font-size:11px;font-weight:500;">Add</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.95) 30%);">
+              <button class="btn-black">
+                Add Ren to Lisbon trip
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 04</div>
+          <div class="caption-title">Add friend — Ren is matched and selected</div>
+          <div class="caption-desc">Smart search with social context ("2 mutual trips with Tomás") builds trust. Selected friend chip stays visible. Black gradient confirm button anchors the bottom.</div>
+          <div class="caption-arrow">Taps "Add Ren to Lisbon trip" → poll flow begins</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- ROW 2 — THE DINNER POLL                              -->
+  <!-- ==================================================== -->
+  <div class="flow-row">
+    <div class="flow-head">
+      <div class="flow-head-left">
+        <div class="section-tag"><span class="num">2</span> Section Two</div>
+        <h2>Spin up the poll, watch votes land, see the winner</h2>
+        <p>Ari creates a restaurant poll with three options, sends it to the group, and watches votes arrive in real time. The auto-pin toggle pushes the winner straight to the itinerary.</p>
+      </div>
+      <div class="flow-head-right">Screens 05 — 09<br>5 steps · ~90s</div>
+    </div>
+
+    <div class="phones">
+
+      <!-- ============ 05 · NEW POLL PICKER ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">05</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:39</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Lisbon · New decision</div>
+                <div class="nav-title">What needs deciding?</div>
+              </div>
+            </div>
+
+            <div style="padding:8px 20px 20px;">
+              <div style="font-size:13px;color:var(--gray-600);line-height:1.55;">Pick a category — we'll set up the right poll for you. Tonight's dinner needs a vote in 12 minutes.</div>
+            </div>
+
+            <div style="padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+
+              <div class="card" style="border-color:var(--orange-500);box-shadow:0 4px 14px rgba(249,115,22,0.15);position:relative;padding:18px 14px;">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2M7 2v20M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
+                </div>
+                <div style="font-size:14px;font-weight:600;color:var(--orange-500);margin-bottom:4px;">Restaurant</div>
+                <div style="font-size:11px;color:var(--gray-500);line-height:1.45;">Pick where to eat from a shortlist</div>
+                <div style="position:absolute;top:12px;right:12px;width:20px;height:20px;border-radius:50%;background:var(--orange-500);display:flex;align-items:center;justify-content:center;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7"/></svg>
+                </div>
+              </div>
+
+              <div class="card" style="padding:18px 14px;">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--indigo-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                </div>
+                <div style="font-size:14px;font-weight:600;color:var(--indigo-600);margin-bottom:4px;">Activity</div>
+                <div style="font-size:11px;color:var(--gray-500);line-height:1.45;">Tour, museum, beach day, hike</div>
+              </div>
+
+              <div class="card" style="padding:18px 14px;">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--sky-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+                </div>
+                <div style="font-size:14px;font-weight:600;color:var(--sky-500);margin-bottom:4px;">Stay</div>
+                <div style="font-size:11px;color:var(--gray-500);line-height:1.45;">Hotel, Airbnb, hostel options</div>
+              </div>
+
+              <div class="card" style="padding:18px 14px;">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </div>
+                <div style="font-size:14px;font-weight:600;color:var(--rose-500);margin-bottom:4px;">Custom poll</div>
+                <div style="font-size:11px;color:var(--gray-500);line-height:1.45;">Open question, free options</div>
+              </div>
+
+            </div>
+
+            <div style="padding:24px 16px 0;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Quick reuse</div>
+              <div class="card-flat" style="display:flex;align-items:center;gap:12px;">
+                <div style="width:36px;height:36px;border-radius:10px;background:var(--gray-100);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:600;color:#212121;">"Lunch tomorrow" template</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Used 2 times this trip</div>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;">
+              <button class="btn-black">Continue with Restaurant
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 05</div>
+          <div class="caption-title">Pick poll category — Restaurant pre-selected</div>
+          <div class="caption-desc">2×2 grid of brand-tinted categories follows the Clarity card pattern. Each category routes to the right downstream form.</div>
+          <div class="caption-arrow">Continues with Restaurant →</div>
+        </div>
+      </div>
+
+      <!-- ============ 06 · BUILD POLL ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">06</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:40</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Restaurant poll · 2 of 3</div>
+                <div class="nav-title">Build the vote</div>
+              </div>
+              <div class="nav-actions">
+                <button style="background:none;border:none;font-size:13px;color:var(--orange-500);font-weight:600;">Save draft</button>
+              </div>
+            </div>
+
+            <div style="padding:8px 16px;display:flex;flex-direction:column;gap:14px;">
+
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--gray-700);margin-bottom:6px;letter-spacing:0.02em;">Question</div>
+                <input class="input" style="font-size:15px;font-weight:500;" value="Where are we eating tonight? 🍷">
+              </div>
+
+              <div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                  <div style="font-size:11px;font-weight:600;color:var(--gray-700);letter-spacing:0.02em;">Options · 3</div>
+                  <button style="font-size:11px;color:var(--orange-500);font-weight:600;background:none;border:none;">+ From Maps</button>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:8px;">
+
+                  <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                    <div class="av av-rm" style="width:38px;height:38px;font-size:12px;border-radius:10px;">RA</div>
+                    <div style="flex:1;min-width:0;">
+                      <div style="font-size:13px;font-weight:600;color:#212121;">Ramiro</div>
+                      <div style="font-size:11px;color:var(--gray-500);display:flex;align-items:center;gap:6px;margin-top:2px;">
+                        <span>Seafood · €€€</span>
+                        <span style="color:var(--gray-300);">·</span>
+                        <span style="display:flex;align-items:center;gap:2px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>4.7</span>
+                      </div>
+                    </div>
+                    <button style="width:28px;height:28px;border-radius:50%;background:var(--gray-100);border:none;display:flex;align-items:center;justify-content:center;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                    <div class="av" style="width:38px;height:38px;font-size:12px;border-radius:10px;background:linear-gradient(135deg,#FBBF24,#F97316);">TA</div>
+                    <div style="flex:1;min-width:0;">
+                      <div style="font-size:13px;font-weight:600;color:#212121;">Taberna da Rua das Flores</div>
+                      <div style="font-size:11px;color:var(--gray-500);display:flex;align-items:center;gap:6px;margin-top:2px;">
+                        <span>Petiscos · €€</span>
+                        <span style="color:var(--gray-300);">·</span>
+                        <span style="display:flex;align-items:center;gap:2px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>4.6</span>
+                      </div>
+                    </div>
+                    <button style="width:28px;height:28px;border-radius:50%;background:var(--gray-100);border:none;display:flex;align-items:center;justify-content:center;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                    <div class="av" style="width:38px;height:38px;font-size:12px;border-radius:10px;background:linear-gradient(135deg,#10B981,#06B6D4);">CE</div>
+                    <div style="flex:1;min-width:0;">
+                      <div style="font-size:13px;font-weight:600;color:#212121;">Cevicheria</div>
+                      <div style="font-size:11px;color:var(--gray-500);display:flex;align-items:center;gap:6px;margin-top:2px;">
+                        <span>Peruvian · €€</span>
+                        <span style="color:var(--gray-300);">·</span>
+                        <span style="display:flex;align-items:center;gap:2px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>4.5</span>
+                      </div>
+                    </div>
+                    <button style="width:28px;height:28px;border-radius:50%;background:var(--gray-100);border:none;display:flex;align-items:center;justify-content:center;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475467" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    </button>
+                  </div>
+
+                  <button style="background:none;border:1.5px dashed var(--gray-300);border-radius:14px;padding:12px;font-size:13px;font-weight:500;color:var(--gray-500);display:flex;align-items:center;justify-content:center;gap:6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                    Add another option
+                  </button>
+                </div>
+              </div>
+
+              <div class="card-flat" style="padding:0;overflow:hidden;">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--gray-100);">
+                  <div>
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Closes in</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Auto-pin winner if everyone votes</div>
+                  </div>
+                  <span class="pill org" style="font-size:11px;">30 min ⏱</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid var(--gray-100);">
+                  <div style="font-size:13px;font-weight:600;color:#212121;">Allow multiple votes</div>
+                  <div style="width:36px;height:22px;background:var(--gray-200);border-radius:100px;position:relative;">
+                    <div style="position:absolute;left:2px;top:2px;width:18px;height:18px;background:#fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.15);"></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;">
+                  <div style="font-size:13px;font-weight:600;color:#212121;">Notify everyone now</div>
+                  <div style="width:36px;height:22px;background:var(--orange-500);border-radius:100px;position:relative;">
+                    <div style="position:absolute;right:2px;top:2px;width:18px;height:18px;background:#fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.15);"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.95) 30%);">
+              <button class="btn-black">Preview & send</button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 06</div>
+          <div class="caption-title">Build the poll — three picks, 30-minute timer</div>
+          <div class="caption-desc">Each restaurant pulled from Maps with rating + price. Settings stack uses the Clarity row pattern. Auto-pin opt-in is foreshadowed in the closer hint.</div>
+          <div class="caption-arrow">Taps "Preview & send" →</div>
+        </div>
+      </div>
+
+      <!-- ============ 07 · POLL PREVIEW ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">07</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:41</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Step 3 of 3</div>
+                <div class="nav-title">Preview · ready to send</div>
+              </div>
+            </div>
+
+            <div style="padding:8px 16px;">
+              <div style="font-size:13px;color:var(--gray-600);line-height:1.55;margin-bottom:14px;">This is what Tomás, Nico, Sofia, and Ren will see in their inbox.</div>
+
+              <div style="margin-bottom:18px;">
+                <div style="font-size:11px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;padding:0 4px;">Push preview</div>
+                <div class="notif">
+                  <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--orange-500),var(--rose-500));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff;font-weight:700;">T</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                      <div style="font-size:12px;font-weight:600;color:#212121;">TripUp · Lisbon</div>
+                      <div style="font-size:10px;color:var(--gray-400);">now</div>
+                    </div>
+                    <div style="font-size:13px;color:#212121;font-weight:600;margin-top:2px;">Ari started a vote: dinner tonight 🍷</div>
+                    <div style="font-size:12px;color:var(--gray-500);margin-top:1px;">Ramiro · Taberna · Cevicheria — closes 21:11</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="font-size:11px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;padding:0 4px;">In the trip feed</div>
+              <div class="card" style="padding:0;overflow:hidden;">
+                <div style="padding:14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--gray-100);">
+                  <div class="av av-ar" style="width:32px;height:32px;font-size:11px;">AR</div>
+                  <div style="flex:1;">
+                    <div style="font-size:12px;color:var(--gray-600);"><b style="color:#212121;">Ari</b> started a poll</div>
+                    <div style="font-size:11px;color:var(--gray-400);">just now</div>
+                  </div>
+                  <span class="pill org" style="font-size:10px;">Restaurant</span>
+                </div>
+                <div style="padding:14px;">
+                  <div style="font-size:15px;font-weight:600;color:#212121;letter-spacing:-0.005em;margin-bottom:14px;">Where are we eating tonight? 🍷</div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="padding:12px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;display:flex;align-items:center;gap:10px;">
+                      <div style="width:18px;height:18px;border:2px solid var(--gray-300);border-radius:50%;flex-shrink:0;"></div>
+                      <div style="font-size:13px;font-weight:500;color:#212121;flex:1;">Ramiro · seafood, €€€</div>
+                    </div>
+                    <div style="padding:12px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;display:flex;align-items:center;gap:10px;">
+                      <div style="width:18px;height:18px;border:2px solid var(--gray-300);border-radius:50%;flex-shrink:0;"></div>
+                      <div style="font-size:13px;font-weight:500;color:#212121;flex:1;">Taberna · petiscos, €€</div>
+                    </div>
+                    <div style="padding:12px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;display:flex;align-items:center;gap:10px;">
+                      <div style="width:18px;height:18px;border:2px solid var(--gray-300);border-radius:50%;flex-shrink:0;"></div>
+                      <div style="font-size:13px;font-weight:500;color:#212121;flex:1;">Cevicheria · ceviche, €€</div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--gray-100);">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">⏱ closes in 30 min · 4 to vote</div>
+                    <div style="font-size:11px;color:var(--orange-500);font-weight:600;">Auto-pins winner ✨</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;background:#fff;border-top:1px solid var(--gray-100);display:flex;gap:8px;">
+              <button class="btn-ghost" style="flex:0.4;">← Edit</button>
+              <button class="btn-black" style="flex:0.6;">Send to group
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 07</div>
+          <div class="caption-title">Preview before sending — push and feed view</div>
+          <div class="caption-desc">Showing both the push notification and the in-app card builds confidence. The auto-pin chip is reinforced as a visible promise.</div>
+          <div class="caption-arrow">Taps "Send to group" →</div>
+        </div>
+      </div>
+
+      <!-- ============ 08 · LIVE POLL (HI-FI) ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">08</div>
+        <div class="hifi-marker">★ HI-FI</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:46</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow"><span class="live-dot"></span>Live · 4 voters</div>
+                <div class="nav-title">Dinner tonight</div>
+              </div>
+              <div class="nav-actions">
+                <button class="nav-icon-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div style="padding:10px 16px 14px;">
+              <div class="card" style="padding:18px;background:linear-gradient(135deg,#FFF7ED 0%,#FFFFFF 60%);border-color:#FED7AA;display:flex;align-items:center;gap:18px;">
+                <div style="width:72px;height:72px;flex-shrink:0;position:relative;">
+                  <svg width="72" height="72" viewBox="0 0 72 72" style="transform:rotate(-90deg);">
+                    <circle cx="36" cy="36" r="30" fill="none" stroke="#FED7AA" stroke-width="6"/>
+                    <circle cx="36" cy="36" r="30" fill="none" stroke="#F97316" stroke-width="6" stroke-dasharray="188" stroke-dashoffset="56" stroke-linecap="round"/>
+                  </svg>
+                  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                    <div style="font-size:18px;font-weight:700;color:#212121;line-height:1;">25</div>
+                    <div style="font-size:9px;color:var(--gray-500);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">min left</div>
+                  </div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:11px;font-weight:700;color:var(--rose-500);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px;"><span class="live-dot"></span>Leading now</div>
+                  <div style="font-size:18px;font-weight:700;color:#212121;letter-spacing:-0.015em;line-height:1.15;">Ramiro · 67%</div>
+                  <div style="font-size:12px;color:var(--gray-500);margin-top:2px;font-weight:500;">3 of 4 votes in · waiting on Sofia</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding:0 20px 12px;">
+              <div style="font-size:16px;font-weight:600;color:#212121;letter-spacing:-0.01em;">Where are we eating tonight? 🍷</div>
+            </div>
+
+            <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px;">
+
+              <div class="card" style="padding:14px;border-color:var(--orange-500);box-shadow:0 4px 14px rgba(249,115,22,0.12);position:relative;overflow:hidden;">
+                <div style="position:absolute;left:0;top:0;bottom:0;width:67%;background:linear-gradient(90deg,#FFF7ED 0%,rgba(255,247,237,0.3) 100%);"></div>
+                <div style="position:relative;display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                  <div class="av av-rm" style="width:36px;height:36px;font-size:11px;border-radius:10px;">RA</div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <div style="font-size:14px;font-weight:600;color:#212121;">Ramiro</div>
+                      <span class="pill org" style="font-size:9px;padding:2px 7px;">★ LEADING</span>
+                    </div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Seafood · €€€ · 4.7</div>
+                  </div>
+                  <div style="font-size:20px;font-weight:700;color:var(--orange-500);letter-spacing:-0.02em;">67%</div>
+                </div>
+                <div style="position:relative;display:flex;align-items:center;justify-content:space-between;">
+                  <div class="av-stack">
+                    <div class="av av-ar" style="width:22px;height:22px;font-size:8px;">AR</div>
+                    <div class="av av-tm" style="width:22px;height:22px;font-size:8px;">TM</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--gray-600);font-weight:500;">Tomás and you</div>
+                </div>
+              </div>
+
+              <div class="card-flat" style="padding:14px;position:relative;overflow:hidden;">
+                <div style="position:absolute;left:0;top:0;bottom:0;width:33%;background:var(--gray-50);"></div>
+                <div style="position:relative;display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                  <div class="av" style="width:36px;height:36px;font-size:11px;border-radius:10px;background:linear-gradient(135deg,#FBBF24,#F97316);">TA</div>
+                  <div style="flex:1;">
+                    <div style="font-size:14px;font-weight:600;color:#212121;">Taberna da Rua das Flores</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Petiscos · €€ · 4.6</div>
+                  </div>
+                  <div style="font-size:20px;font-weight:700;color:var(--gray-700);letter-spacing:-0.02em;">33%</div>
+                </div>
+                <div style="position:relative;display:flex;align-items:center;justify-content:space-between;">
+                  <div class="av-stack">
+                    <div class="av av-nc" style="width:22px;height:22px;font-size:8px;">NC</div>
+                  </div>
+                  <div style="font-size:11px;color:var(--gray-500);font-weight:500;">Nico</div>
+                </div>
+              </div>
+
+              <div class="card-flat" style="padding:14px;opacity:0.65;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                  <div class="av" style="width:36px;height:36px;font-size:11px;border-radius:10px;background:linear-gradient(135deg,#10B981,#06B6D4);">CE</div>
+                  <div style="flex:1;">
+                    <div style="font-size:14px;font-weight:600;color:#212121;">Cevicheria</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Peruvian · €€ · 4.5</div>
+                  </div>
+                  <div style="font-size:20px;font-weight:700;color:var(--gray-400);letter-spacing:-0.02em;">0%</div>
+                </div>
+                <div style="font-size:11px;color:var(--gray-400);font-weight:500;">No votes yet</div>
+              </div>
+
+              <div class="card-flat" style="padding:12px 14px;display:flex;align-items:center;gap:10px;background:var(--gray-50);">
+                <div style="width:32px;height:32px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid var(--gray-200);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#F97316"><path d="M16 9V4l1-1V1H7v2l1 1v5L4 14v2h6v6l1 1h2l1-1v-6h6v-2l-4-5z"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:12px;font-weight:600;color:#212121;">Auto-pin winner to itinerary</div>
+                  <div style="font-size:10px;color:var(--gray-500);margin-top:2px;">Ramiro added to 21:00 if it wins</div>
+                </div>
+                <div style="width:36px;height:22px;background:var(--orange-500);border-radius:100px;position:relative;">
+                  <div style="position:absolute;right:2px;top:2px;width:18px;height:18px;background:#fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.15);"></div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 08 · Key screen</div>
+          <div class="caption-title">Live poll — votes land in real time</div>
+          <div class="caption-desc">Countdown ring + leading-now stat make the pulse visible. Voter avatars under each option turn percentages into social proof. The auto-pin toggle eliminates a whole confirmation step.</div>
+          <div class="caption-arrow">Sofia votes Ramiro · poll closes →</div>
+        </div>
+      </div>
+
+      <!-- ============ 09 · POLL CLOSED ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">09</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">20:48</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Poll closed</div>
+                <div class="nav-title">Tonight's dinner</div>
+              </div>
+            </div>
+
+            <div style="padding:8px 16px 0;">
+              <div class="card" style="padding:0;overflow:hidden;border-color:var(--orange-500);">
+                <div style="height:140px;background:linear-gradient(135deg,#F97316 0%,#F43F5E 100%);position:relative;display:flex;align-items:center;justify-content:center;">
+                  <div style="position:absolute;top:18px;left:30px;width:6px;height:6px;background:#FBBF24;border-radius:50%;"></div>
+                  <div style="position:absolute;top:32px;right:48px;width:8px;height:8px;background:#fff;border-radius:50%;"></div>
+                  <div style="position:absolute;top:60px;left:60px;width:5px;height:5px;background:#FBBF24;border-radius:50%;"></div>
+                  <div style="position:absolute;bottom:24px;right:32px;width:6px;height:6px;background:#fff;border-radius:50%;"></div>
+                  <div style="position:absolute;bottom:40px;left:40px;width:4px;height:4px;background:#FBBF24;border-radius:50%;"></div>
+                  <div style="position:absolute;top:50px;right:20px;width:10px;height:3px;background:#fff;border-radius:2px;transform:rotate(45deg);"></div>
+                  <div style="position:absolute;bottom:50px;left:20px;width:10px;height:3px;background:#FBBF24;border-radius:2px;transform:rotate(-30deg);"></div>
+
+                  <div style="text-align:center;color:#fff;">
+                    <div style="font-size:36px;margin-bottom:4px;">🎉</div>
+                    <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;opacity:0.9;">The winner is</div>
+                  </div>
+                </div>
+                <div style="padding:18px;text-align:center;">
+                  <div style="font-size:24px;font-weight:700;color:#212121;letter-spacing:-0.02em;">Ramiro</div>
+                  <div style="font-size:13px;color:var(--gray-500);margin-top:4px;">Seafood · €€€ · 7-min walk from apartment</div>
+                  <div style="display:flex;gap:6px;margin-top:14px;">
+                    <button class="btn-ghost" style="flex:1;font-size:13px;padding:10px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      Directions
+                    </button>
+                    <button class="btn-black" style="flex:1.4;font-size:13px;padding:10px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+                      Call to confirm
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="padding:18px 16px 0;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Final standings · 4 of 4 voted</div>
+
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                  <div style="width:24px;height:24px;border-radius:50%;background:var(--orange-500);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Ramiro</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Ari, Tomás, Sofia</div>
+                  </div>
+                  <div style="font-size:14px;font-weight:700;color:#212121;">75%</div>
+                </div>
+                <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                  <div style="width:24px;height:24px;border-radius:50%;background:var(--gray-200);color:var(--gray-700);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Taberna</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Nico</div>
+                  </div>
+                  <div style="font-size:14px;font-weight:700;color:#212121;">25%</div>
+                </div>
+                <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;opacity:0.5;">
+                  <div style="width:24px;height:24px;border-radius:50%;background:var(--gray-200);color:var(--gray-700);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</div>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Cevicheria</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">No votes</div>
+                  </div>
+                  <div style="font-size:14px;font-weight:700;color:#212121;">0%</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="position:absolute;bottom:120px;left:16px;right:16px;">
+              <div style="background:#212121;color:#fff;padding:12px 14px;border-radius:14px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,0.25);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div style="flex:1;font-size:13px;font-weight:500;">Added to itinerary at 21:00</div>
+                <button style="background:none;border:none;color:#FBBF24;font-size:12px;font-weight:600;">Undo</button>
+              </div>
+            </div>
+
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;">
+              <button class="btn-secondary">
+                See itinerary →
+              </button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 09</div>
+          <div class="caption-title">Winner — Ramiro, auto-added at 21:00</div>
+          <div class="caption-desc">Celebratory hero with confetti. Inline directions + call buttons reduce friction. The toast confirms auto-pin happened with an Undo escape hatch.</div>
+          <div class="caption-arrow">Group walks to Ramiro · dinner happens →</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- ROW 3 — LOGGING THE EXPENSE                          -->
+  <!-- ==================================================== -->
+  <div class="flow-row">
+    <div class="flow-head">
+      <div class="flow-head-left">
+        <div class="section-tag"><span class="num">3</span> Section Three</div>
+        <h2>Log dinner with per-item exclusion</h2>
+        <p>After eating, Ari logs the €86.40 bill, splits the food across the whole table but excludes Ren and Nic from the wine line — they didn't drink. The math updates as she taps.</p>
+      </div>
+      <div class="flow-head-right">Screens 10 — 13<br>4 steps · ~45s</div>
+    </div>
+
+    <div class="phones">
+
+      <!-- ============ 10 · ITINERARY UPDATED ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">10</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">22:54</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Lisbon · Day 4</div>
+                <div class="nav-title">Itinerary</div>
+              </div>
+              <div class="nav-actions">
+                <button class="nav-icon-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs-strip">
+              <div class="tab-i on">Itinerary</div>
+              <div class="tab-i">Polls</div>
+              <div class="tab-i">Expenses <span style="background:var(--orange-500);color:#fff;font-size:9px;padding:2px 5px;border-radius:6px;margin-left:4px;font-weight:700;">€</span></div>
+              <div class="tab-i">Map</div>
+            </div>
+
+            <!-- Day filter -->
+            <div style="padding:14px 16px 8px;display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--gray-500);letter-spacing:0.06em;text-transform:uppercase;">Saturday · Day 4 of 5</div>
+                <div style="font-size:18px;font-weight:600;color:#212121;letter-spacing:-0.01em;margin-top:2px;">5 May, 2026</div>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <button class="nav-icon-btn" style="width:32px;height:32px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="nav-icon-btn" style="width:32px;height:32px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Timeline -->
+            <div style="padding:8px 16px 0;">
+
+              <div style="display:flex;gap:12px;margin-bottom:10px;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:46px;">
+                  <div style="font-size:11px;color:var(--gray-400);font-weight:500;">10:00</div>
+                  <div style="width:9px;height:9px;border-radius:50%;background:var(--gray-300);"></div>
+                  <div style="width:1px;flex:1;background:var(--gray-200);"></div>
+                </div>
+                <div class="card-flat" style="flex:1;padding:12px;opacity:0.55;margin-bottom:8px;">
+                  <div style="font-size:13px;font-weight:600;color:#212121;text-decoration:line-through;">Belém Tower</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Done · Tomás added 2 photos</div>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:12px;margin-bottom:10px;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:46px;">
+                  <div style="font-size:11px;color:var(--gray-400);font-weight:500;">17:30</div>
+                  <div style="width:9px;height:9px;border-radius:50%;background:var(--gray-300);"></div>
+                  <div style="width:1px;flex:1;background:var(--gray-200);"></div>
+                </div>
+                <div class="card-flat" style="flex:1;padding:12px;opacity:0.55;margin-bottom:8px;">
+                  <div style="font-size:13px;font-weight:600;color:#212121;text-decoration:line-through;">Sunset · Miradouro da Graça</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Done</div>
+                </div>
+              </div>
+
+              <!-- The new Ramiro entry -->
+              <div style="display:flex;gap:12px;margin-bottom:10px;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:46px;">
+                  <div style="font-size:11px;color:var(--orange-500);font-weight:700;">21:00</div>
+                  <div style="width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--orange-500);box-shadow:0 0 0 4px rgba(249,115,22,0.15);"></div>
+                  <div style="width:1px;flex:1;background:var(--gray-200);"></div>
+                </div>
+                <div class="card" style="flex:1;padding:14px;border-color:var(--orange-500);">
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                    <div class="av av-rm" style="width:32px;height:32px;font-size:11px;border-radius:9px;">RA</div>
+                    <div style="flex:1;">
+                      <div style="display:flex;align-items:center;gap:6px;">
+                        <div style="font-size:14px;font-weight:600;color:#212121;">Dinner · Ramiro</div>
+                        <span class="pill org" style="font-size:9px;padding:2px 6px;">JUST ADDED</span>
+                      </div>
+                      <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Seafood · €€€ · 7-min walk</div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid var(--gray-100);">
+                    <div class="av-stack">
+                      <div class="av av-ar" style="width:22px;height:22px;font-size:8px;">AR</div>
+                      <div class="av av-tm" style="width:22px;height:22px;font-size:8px;">TM</div>
+                      <div class="av av-nc" style="width:22px;height:22px;font-size:8px;">NC</div>
+                      <div class="av av-so" style="width:22px;height:22px;font-size:8px;">SO</div>
+                      <div class="av av-rn" style="width:22px;height:22px;font-size:8px;">RN</div>
+                    </div>
+                    <span style="font-size:11px;color:var(--gray-500);font-weight:500;">All 5 attending</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:12px;">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;width:46px;">
+                  <div style="font-size:11px;color:var(--gray-400);font-weight:500;">23:00</div>
+                  <div style="width:9px;height:9px;border-radius:50%;background:var(--gray-200);border:2px solid var(--gray-300);box-sizing:border-box;"></div>
+                </div>
+                <div class="card-flat" style="flex:1;padding:12px;border-style:dashed;">
+                  <div style="font-size:13px;font-weight:600;color:var(--gray-700);">Drinks · Pensão Amor</div>
+                  <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Suggested by Tomás · tap to confirm</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Toast -->
+            <div style="position:absolute;bottom:120px;left:16px;right:16px;">
+              <div style="background:#212121;color:#fff;padding:12px 14px;border-radius:14px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,0.25);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div style="flex:1;font-size:13px;font-weight:500;">Ramiro pinned to 21:00</div>
+                <button style="background:none;border:none;color:#FBBF24;font-size:12px;font-weight:600;">Undo</button>
+              </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;">
+              <button class="btn-black">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Log dinner expense
+              </button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 10</div>
+          <div class="caption-title">Itinerary updated — Ramiro is live at 21:00</div>
+          <div class="caption-desc">Past items dim out, the new entry highlights with a "JUST ADDED" pill and all 5 avatars. Bottom CTA pivots the user from "where" to "how much".</div>
+          <div class="caption-arrow">Taps "Log dinner expense" →</div>
+        </div>
+      </div>
+
+      <!-- ============ 11 · EXPENSES TAB ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">11</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time dark">22:55</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#fff"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#fff"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#fff" opacity="0.5"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#fff"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#fff" opacity="0.5"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute;inset:0;background:#fff;">
+
+            <!-- Dark hero -->
+            <div style="background:linear-gradient(180deg,#111111 0%,#1F2937 100%);padding:70px 20px 28px;color:#fff;border-radius:0 0 28px 28px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                <button class="nav-back" style="background:rgba(255,255,255,0.12);border:none;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div style="text-align:center;flex:1;">
+                  <div style="font-size:11px;opacity:0.6;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;">Lisbon · Expenses</div>
+                </div>
+                <button class="nav-back" style="background:rgba(255,255,255,0.12);border:none;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                </button>
+              </div>
+
+              <!-- Balance -->
+              <div style="text-align:center;margin-top:8px;">
+                <div style="font-size:11px;opacity:0.65;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Your balance</div>
+                <div style="font-size:42px;font-weight:700;letter-spacing:-0.025em;margin-top:6px;color:#10B981;">+€42.50</div>
+                <div style="font-size:13px;opacity:0.7;margin-top:4px;">You're owed across this trip</div>
+              </div>
+
+              <!-- Mini stats -->
+              <div style="display:flex;gap:10px;margin-top:24px;">
+                <div style="flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:12px;">
+                  <div style="font-size:10px;opacity:0.6;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;">Total spent</div>
+                  <div style="font-size:18px;font-weight:700;margin-top:4px;letter-spacing:-0.015em;">€612.30</div>
+                </div>
+                <div style="flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:12px;">
+                  <div style="font-size:10px;opacity:0.6;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;">Your share</div>
+                  <div style="font-size:18px;font-weight:700;margin-top:4px;letter-spacing:-0.015em;">€122.46</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent expenses -->
+            <div style="padding:18px 16px 0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;">Recent · 6 expenses</div>
+                <button style="font-size:12px;color:var(--orange-500);font-weight:600;background:none;border:none;">See all</button>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:8px;">
+
+                <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                  <div style="width:38px;height:38px;border-radius:10px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2M7 2v20"/></svg>
+                  </div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Lunch · Time Out Market</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Tomás paid · split 5 ways</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-size:14px;font-weight:700;color:#212121;letter-spacing:-0.01em;">€48.50</div>
+                    <div style="font-size:10px;color:var(--emerald-500);font-weight:600;margin-top:2px;">+€9.70 ↑</div>
+                  </div>
+                </div>
+
+                <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                  <div style="width:38px;height:38px;border-radius:10px;background:var(--sky-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20a15 15 0 010-20"/></svg>
+                  </div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Tram passes · Day 4</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">Sofia paid · split 5 ways</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-size:14px;font-weight:700;color:#212121;letter-spacing:-0.01em;">€22.50</div>
+                    <div style="font-size:10px;color:var(--rose-500);font-weight:600;margin-top:2px;">−€4.50 ↓</div>
+                  </div>
+                </div>
+
+                <div class="card-flat" style="padding:12px;display:flex;align-items:center;gap:10px;">
+                  <div style="width:38px;height:38px;border-radius:10px;background:var(--indigo-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                  </div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:600;color:#212121;">Airbnb · 4 nights</div>
+                    <div style="font-size:11px;color:var(--gray-500);margin-top:2px;">You paid · split 4 ways</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-size:14px;font-weight:700;color:#212121;letter-spacing:-0.01em;">€420.00</div>
+                    <div style="font-size:10px;color:var(--emerald-500);font-weight:600;margin-top:2px;">+€315.00 ↑</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;">
+              <button class="btn-black">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Add new expense
+              </button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 11</div>
+          <div class="caption-title">Expenses tab — your balance, recent activity</div>
+          <div class="caption-desc">Dark hero anchors the financial section. Mini-stats give context at a glance. Each row shows who paid + your delta. Big black CTA opens the new expense flow.</div>
+          <div class="caption-arrow">Taps "Add new expense" →</div>
+        </div>
+      </div>
+
+      <!-- ============ 12 · NEW EXPENSE ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">12</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">22:56</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Lisbon · New expense</div>
+                <div class="nav-title">Dinner at Ramiro</div>
+              </div>
+              <div class="nav-actions">
+                <button style="background:none;border:none;font-size:13px;color:var(--orange-500);font-weight:600;">📷</button>
+              </div>
+            </div>
+
+            <!-- Big amount input -->
+            <div style="padding:24px 20px 20px;text-align:center;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Total amount</div>
+              <div style="font-size:56px;font-weight:700;color:#212121;letter-spacing:-0.03em;line-height:1;">
+                <span style="color:var(--gray-400);font-weight:500;">€</span>86.40
+              </div>
+              <button style="background:var(--gray-50);border:1px solid var(--gray-200);padding:6px 14px;border-radius:100px;font-size:11px;color:var(--gray-700);font-weight:500;margin-top:14px;display:inline-flex;align-items:center;gap:6px;">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M12 6v6l4 2"/></svg>
+                EUR · 22:54
+              </button>
+            </div>
+
+            <!-- Form rows -->
+            <div style="padding:0 16px;">
+              <div class="card-flat" style="padding:0;">
+
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--gray-100);">
+                  <div style="width:32px;height:32px;border-radius:9px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">Description</div>
+                    <div style="font-size:14px;color:#212121;font-weight:600;margin-top:2px;">Dinner at Ramiro 🦞</div>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--gray-100);">
+                  <div class="av av-ar" style="width:32px;height:32px;font-size:11px;">AR</div>
+                  <div style="flex:1;">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">Paid by</div>
+                    <div style="font-size:14px;color:#212121;font-weight:600;margin-top:2px;">You · Ari</div>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--gray-100);">
+                  <div style="width:32px;height:32px;border-radius:9px;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2M7 2v20M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">Category</div>
+                    <div style="font-size:14px;color:#212121;font-weight:600;margin-top:2px;">Food & drink</div>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--gray-100);">
+                  <div style="width:32px;height:32px;border-radius:9px;background:var(--sky-soft);display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">Date & time</div>
+                    <div style="font-size:14px;color:#212121;font-weight:600;margin-top:2px;">Today · 22:54</div>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;">
+                  <div style="width:32px;height:32px;border-radius:9px;background:var(--indigo-soft);display:flex;align-items:center;justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  </div>
+                  <div style="flex:1;">
+                    <div style="font-size:11px;color:var(--gray-500);font-weight:500;">Split</div>
+                    <div style="font-size:14px;color:#212121;font-weight:600;margin-top:2px;">Per item · 2 lines, 5 people</div>
+                  </div>
+                  <span class="pill org" style="font-size:10px;">Custom</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Owe summary -->
+            <div style="padding:14px 16px 0;">
+              <div class="card" style="padding:14px;background:var(--orange-soft);border-color:#FED7AA;">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div>
+                    <div style="font-size:11px;font-weight:600;color:var(--orange-500);letter-spacing:0.04em;text-transform:uppercase;">You'll be owed</div>
+                    <div style="font-size:24px;font-weight:700;color:#212121;letter-spacing:-0.02em;margin-top:2px;">€69.12</div>
+                  </div>
+                  <button style="background:none;border:none;font-size:11px;color:var(--orange-500);font-weight:600;">View breakdown →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;">
+              <button class="btn-black">Save expense</button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 12</div>
+          <div class="caption-title">New expense — clean form, big amount</div>
+          <div class="caption-desc">Massive amount as the focal point. Each form row has its own color-tinted icon (Clarity convention). The "Custom" split chip flags that this isn't a simple even split.</div>
+          <div class="caption-arrow">Taps "Per item" split row →</div>
+        </div>
+      </div>
+
+      <!-- ============ 13 · PER-ITEM SPLIT ============ -->
+      <div class="phone-cell">
+        <div class="step-badge">13</div>
+        <div class="phone"><div class="screen">
+
+          <div class="sb">
+            <span class="sb-time">22:57</span>
+            <div class="island"></div>
+            <div class="sb-icons">
+              <svg width="18" height="11" viewBox="0 0 18 11" fill="#000"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="5" y="3" width="3" height="8" rx="1"/><rect x="10" y="0" width="3" height="11" rx="1"/></svg>
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#000"><path d="M8 1.5C5 1.5 2.5 2.5 1 4l1.5 1.5C3.5 4.5 5.5 3.7 8 3.7s4.5.8 5.5 1.8L15 4c-1.5-1.5-4-2.5-7-2.5z"/></svg>
+              <svg width="26" height="11" viewBox="0 0 26 11" fill="none"><rect x="0.5" y="0.5" width="22" height="10" rx="2.5" stroke="#000" opacity="0.4"/><rect x="2" y="2" width="17" height="7" rx="1" fill="#000"/><rect x="23" y="3.5" width="1.5" height="4" rx="0.5" fill="#000" opacity="0.4"/></svg>
+            </div>
+          </div>
+
+          <div class="app">
+
+            <div class="nav">
+              <button class="nav-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <div class="nav-meta">
+                <div class="nav-eyebrow">Dinner · €86.40</div>
+                <div class="nav-title">Split per item</div>
+              </div>
+            </div>
+
+            <!-- Method tabs -->
+            <div style="padding:8px 16px;">
+              <div style="display:flex;gap:4px;background:var(--gray-100);padding:4px;border-radius:12px;">
+                <button style="flex:1;padding:8px;border-radius:9px;border:none;background:transparent;font-size:12px;color:var(--gray-500);font-weight:500;">Equally</button>
+                <button style="flex:1;padding:8px;border-radius:9px;border:none;background:#fff;font-size:12px;color:#212121;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.08);">Per item</button>
+                <button style="flex:1;padding:8px;border-radius:9px;border:none;background:transparent;font-size:12px;color:var(--gray-500);font-weight:500;">Custom %</button>
+              </div>
+            </div>
+
+            <!-- Items -->
+            <div style="padding:8px 16px;display:flex;flex-direction:column;gap:10px;">
+
+              <!-- Food line -->
+              <div class="card-flat" style="padding:14px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:28px;height:28px;border-radius:8px;background:var(--orange-soft);display:flex;align-items:center;justify-content:center;">🦞</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:600;color:#212121;">Food · seafood platter</div>
+                      <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Split 5 ways · €11.28 each</div>
+                    </div>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#212121;letter-spacing:-0.01em;">€56.40</div>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-ar" style="width:20px;height:20px;font-size:8px;">AR</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Ari</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-tm" style="width:20px;height:20px;font-size:8px;">TM</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Tomás</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-nc" style="width:20px;height:20px;font-size:8px;">NC</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Nico</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-so" style="width:20px;height:20px;font-size:8px;">SO</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Sofia</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-rn" style="width:20px;height:20px;font-size:8px;">RN</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Ren</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Wine line - CUSTOM SPLIT -->
+              <div class="card" style="padding:14px;border-color:var(--rose-500);box-shadow:0 4px 14px rgba(244,63,94,0.10);">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="width:28px;height:28px;border-radius:8px;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;">🍷</div>
+                    <div>
+                      <div style="display:flex;align-items:center;gap:6px;">
+                        <div style="font-size:13px;font-weight:600;color:#212121;">Wine · Vinho Verde</div>
+                        <span class="pill rose" style="font-size:9px;padding:2px 6px;">CUSTOM</span>
+                      </div>
+                      <div style="font-size:11px;color:var(--gray-500);margin-top:1px;">Split 3 ways · €10.00 each</div>
+                    </div>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#212121;letter-spacing:-0.01em;">€30.00</div>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-ar" style="width:20px;height:20px;font-size:8px;">AR</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Ari</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-tm" style="width:20px;height:20px;font-size:8px;">TM</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Tomás</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--rose-soft);border:1px solid #FECDD3;border-radius:100px;opacity:0.5;">
+                    <div class="av av-nc" style="width:20px;height:20px;font-size:8px;">NC</div>
+                    <span style="font-size:11px;color:var(--gray-700);font-weight:500;text-decoration:line-through;">Nico</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:100px;">
+                    <div class="av av-so" style="width:20px;height:20px;font-size:8px;">SO</div>
+                    <span style="font-size:11px;color:#212121;font-weight:500;">Sofia</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:5px;padding:5px 10px 5px 5px;background:var(--rose-soft);border:1px solid #FECDD3;border-radius:100px;opacity:0.5;">
+                    <div class="av av-rn" style="width:20px;height:20px;font-size:8px;">RN</div>
+                    <span style="font-size:11px;color:var(--gray-700);font-weight:500;text-decoration:line-through;">Ren</span>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:10px;padding:8px 10px;background:var(--rose-soft);border-radius:10px;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#F43F5E"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke="#fff" stroke-width="2"/></svg>
+                  <span style="font-size:11px;color:var(--rose-500);font-weight:600;">Nico and Ren didn't drink — excluded</span>
+                </div>
+              </div>
+
+              <button style="background:none;border:1.5px dashed var(--gray-300);border-radius:14px;padding:12px;font-size:12px;font-weight:500;color:var(--gray-500);display:flex;align-items:center;justify-content:center;gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                Add another line
+              </button>
+            </div>
+
+            <!-- Live owe summary -->
+            <div style="padding:14px 16px 0;">
+              <div style="font-size:11px;font-weight:700;color:var(--gray-500);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Each person owes you</div>
+              <div class="card-flat" style="padding:0;">
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--gray-100);">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="av av-tm" style="width:24px;height:24px;font-size:9px;">TM</div>
+                    <span style="font-size:13px;font-weight:500;color:#212121;">Tomás</span>
+                  </div>
+                  <span style="font-size:13px;font-weight:700;color:#212121;">€21.28</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--gray-100);">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="av av-nc" style="width:24px;height:24px;font-size:9px;">NC</div>
+                    <span style="font-size:13px;font-weight:500;color:#212121;">Nico</span>
+                    <span class="pill rose" style="font-size:9px;padding:2px 6px;">food only</span>
+                  </div>
+                  <span style="font-size:13px;font-weight:700;color:#212121;">€11.28</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--gray-100);">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="av av-so" style="width:24px;height:24px;font-size:9px;">SO</div>
+                    <span style="font-size:13px;font-weight:500;color:#212121;">Sofia</span>
+                  </div>
+                  <span style="font-size:13px;font-weight:700;color:#212121;">€21.28</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <div class="av av-rn" style="width:24px;height:24px;font-size:9px;">RN</div>
+                    <span style="font-size:13px;font-weight:500;color:#212121;">Ren</span>
+                    <span class="pill rose" style="font-size:9px;padding:2px 6px;">food only</span>
+                  </div>
+                  <span style="font-size:13px;font-weight:700;color:#212121;">€11.28</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div style="position:absolute;bottom:34px;left:0;right:0;padding:14px 16px;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.95) 30%);">
+              <button class="btn-black">Save split · €69.12 owed to you</button>
+            </div>
+
+          </div>
+
+          <div class="home-ind"></div>
+
+        </div></div>
+        <div class="phone-caption">
+          <div class="caption-step">Step 13</div>
+          <div class="caption-title">Per-item split — Ren and Nic excluded from wine</button></div>
+          <div class="caption-desc">Wine line gets the rose accent. Excluded avatars are crossed out and dimmed, with an explainer chip. The math updates live below — total transparency, no surprises.</div>
+          <div class="caption-arrow">Taps "Save split" → time to settle →</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
